@@ -27,7 +27,7 @@ dependencies {
 
 application {
     // Define the main class for the application.
-    mainClass = 'project.App'
+    mainClass = 'booktify.App'
 }
 
 javafx {

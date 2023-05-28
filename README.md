@@ -1,2 +1,2 @@
 # Booktify
-Booktify, is a simple book buying application using JavaFX.
+Booktify, is a simple book buying application using JavaFX via Graddle

@@ -2,4 +2,10 @@ test
 test
 assalamualaikum
 look at the stars
+<<<<<<< HEAD
 abcd
+=======
+Iniii Rasyaddddd
+Test Finished
+>>>>>>> 2b28f996b3b5a8a42e4b1f3ecb9b7ec71d0200a0
+aaas

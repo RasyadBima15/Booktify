@@ -19,7 +19,7 @@ import javafx.stage.Stage;
 public class HomeScene {
     private Stage stage;
 
-    public HomeScene(Stage stage){
+    public HomeScene(Stage stage) {
         this.stage = stage;
     }
 
@@ -74,6 +74,6 @@ public class HomeScene {
         // VBox vLayout = new VBox(ivLogo, textBrand, lbDesc, space, textLogin, tfUsername, tfPass, btnLogin, flwPane );
         // vLayout.setSpacing(10);
         spLayout.getChildren().add(vLayout);
-        return scene;  
+        return scene;
     }
 }

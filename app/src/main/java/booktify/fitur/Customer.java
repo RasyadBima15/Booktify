@@ -1,4 +1,4 @@
-package booktify.class;
+package booktify.fitur;
 
 public class Customer {
     private int ID;

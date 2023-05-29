@@ -1,4 +1,4 @@
-package booktify.class;
+package booktify.fitur;
 
 public class Transaction {
     private String username;

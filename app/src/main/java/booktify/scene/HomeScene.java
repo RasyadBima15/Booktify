@@ -16,7 +16,7 @@ import javafx.stage.Stage;
 public class HomeScene {
     private Stage stage;
 
-    public HomeScene(Stage stage){
+    public HomeScene(Stage stage) {
         this.stage = stage;
     }
 
@@ -69,6 +69,6 @@ public class HomeScene {
         VBox.setMargin(vContent, new Insets(150, 0, 150, 0));
 
         spLayout.getChildren().add(vLayout);
-        return scene;  
+        return scene;
     }
 }

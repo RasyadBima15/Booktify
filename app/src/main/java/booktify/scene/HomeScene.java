@@ -3,12 +3,10 @@ package booktify.scene;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Priority;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
@@ -22,49 +20,55 @@ public class HomeScene {
         this.stage = stage;
     }
 
-    public void show() {
+    public Scene show() {
         StackPane spLayout = new StackPane();
         Scene scene = new Scene(spLayout, 640, 480);
-        // scene.getStylesheets().add(getClass().getResource("/styles/home_style.css").toExternalForm());
+        scene.getStylesheets().addAll(getClass().getResource("/styles/home_style.css").toExternalForm());
 
         ImageView ivLogo = new ImageView("/images/logoBooktify.jpg");
-        ivLogo.setFitHeight(100);
-        ivLogo.setFitWidth(200);
+        ivLogo.setFitHeight(50);
+        ivLogo.setFitWidth(50);
 
-        Text textBrand = new Text("Booktify");
+        HBox hboxLogo = new HBox(ivLogo);
+        hboxLogo.setAlignment(Pos.TOP_LEFT);
 
-        Label lbDesc = new Label("Aplikasi belanja buku yang mudah dan efisien bagi pengguna");
-        lbDesc.getStyleClass().add("desc-text");
+        Text home = new Text("Home");
+        Text cekSaldo = new Text("Cek Saldo");
+        Text listBooks = new Text("Daftar Buku");
+        Text historyPurchase = new Text("Riwayat Pembelian");
+        Text contactAdmin = new Text("Contact Admin");
+        Text logout = new Text("Logout");
 
-        Region space = new Region();
-        space.setPrefHeight(12);
+        Region spacerNavbar = new Region();
+        spacerNavbar.setPrefSize(60, 0);
 
-        Text textLogin = new Text("Login");
+        HBox hboxHome = new HBox(spacerNavbar, home, listBooks, historyPurchase, cekSaldo, contactAdmin, logout);
+        hboxHome.setSpacing(10);
+        hboxHome.setAlignment(Pos.CENTER);
 
-        TextField tfUsername = new TextField();
-        TextField tfPass = new TextField();
+        HBox hNavbar = new HBox(hboxLogo, hboxHome);
+        hNavbar.setAlignment(Pos.TOP_LEFT);
+        hNavbar.setPadding(new Insets(10));
 
-        // tfUsername.setPrefWidth(10);
-        // tfPass.setPrefHeight(10);
+        VBox vNavbar = new VBox(hNavbar);
+        vNavbar.setAlignment(Pos.TOP_CENTER);
+        vNavbar.getStyleClass().add("navbar");
 
-        Button btnLogin = new Button("Masuk");
-        Text textRegis = new Text("Belum punya akun? ayo");
-        Hyperlink regis = new Hyperlink("daftar");
+        // Region spacerContent = new Region();
+        // spacerContent.setPrefSize(300, 0);
 
-        // regis.setOnAction(v -> {
-        //     System.out.println("Ini akuuu");
-        // });
+        Text tHome = new Text("Selamat Datang di Booktify,");
+        Text tHomeUser = new Text("{ Nama }");
 
-        FlowPane flwPane = new FlowPane();
-        flwPane.getChildren().addAll(textRegis, regis);
-        flwPane.setAlignment(Pos.CENTER);
+        VBox vContent = new VBox(tHome, tHomeUser);
+        vContent.setAlignment(Pos.CENTER);
 
-        VBox vLayout = new VBox(ivLogo, textBrand, lbDesc, space, textLogin, tfUsername, tfPass, btnLogin, flwPane );
-        vLayout.setSpacing(10);
+        VBox vLayout = new VBox(vNavbar, vContent);
+        vLayout.setAlignment(Pos.TOP_CENTER);
+
+        VBox.setMargin(vContent, new Insets(150, 0, 150, 0));
+
         spLayout.getChildren().add(vLayout);
-        vLayout.setAlignment(Pos.CENTER);
-
-        stage.setScene(scene);
-
+        return scene;  
     }
 }

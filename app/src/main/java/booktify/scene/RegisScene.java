@@ -4,6 +4,7 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
@@ -24,8 +25,12 @@ public class RegisScene {
         Text createAccount = new Text("Buat Akun");
 
         TextField tfUsername = new TextField();
+        tfUsername.setMaxWidth(380);
+        tfUsername.setMaxHeight(1000);
         Label lbStrongUsername = new Label("ket: bla bla");
-        TextField tfPassword = new TextField();
+        PasswordField tfPassword = new PasswordField();
+        tfPassword.setMaxWidth(380);
+        tfPassword.setMaxHeight(1000);
         Label lbStrongPassword = new Label("Ket: Password harus memiliki minimal bla bla bla");
 
         VBox vLayoutTextField = new VBox(tfUsername, lbStrongUsername, tfPassword, lbStrongPassword);

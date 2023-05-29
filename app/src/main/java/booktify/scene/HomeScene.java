@@ -32,17 +32,16 @@ public class HomeScene {
         HBox hboxLogo = new HBox(ivLogo);
         hboxLogo.setAlignment(Pos.TOP_LEFT);
 
-        Text home = new Text("Home");
-        Text cekSaldo = new Text("Cek Saldo");
-        Text listBooks = new Text("Daftar Buku");
-        Text historyPurchase = new Text("Riwayat Pembelian");
-        Text contactAdmin = new Text("Contact Admin");
-        Text logout = new Text("Logout");
+        Label home = new Label("Home");
+        Label cekSaldo = new Label("Cek Saldo");
+        Label listBooks = new Label("Daftar Buku");
+        Label historyPurchase = new Label("Riwayat Pembelian");
+        Label logout = new Label("Logout");
 
         Region spacerNavbar = new Region();
         spacerNavbar.setPrefSize(60, 0);
 
-        HBox hboxHome = new HBox(spacerNavbar, home, listBooks, historyPurchase, cekSaldo, contactAdmin, logout);
+        HBox hboxHome = new HBox(spacerNavbar, home, listBooks, historyPurchase, cekSaldo, logout);
         hboxHome.setSpacing(10);
         hboxHome.setAlignment(Pos.CENTER);
 
@@ -63,12 +62,17 @@ public class HomeScene {
         VBox vContent = new VBox(tHome, tHomeUser);
         vContent.setAlignment(Pos.CENTER);
 
-        VBox vLayout = new VBox(vNavbar, vContent);
+        Text tContact = new Text("Contact Admin");
+        Text tNumPhone = new Text("+628871293167");
+        VBox vContactAdmin = new VBox(tContact, tNumPhone);
+        vContactAdmin.setAlignment(Pos.CENTER);
+ 
+        VBox vLayout = new VBox(vNavbar, vContent, vContactAdmin);
         vLayout.setAlignment(Pos.TOP_CENTER);
 
         VBox.setMargin(vContent, new Insets(150, 0, 150, 0));
 
         spLayout.getChildren().add(vLayout);
         return scene;  
-    }
+    } 
 }

@@ -1,16 +1,16 @@
 package booktify.models;
-
 public class Transaction {
     private String id_Name;
     private String id_Book;
     private String date;
-    
+
+ 
     public Transaction(String id_Name, String id_Book, String date) {
         this.id_Name = id_Name;
         this.id_Book = id_Book;
         this.date = date;
     }
-    
+
     public String getid_Name() {
         return id_Name;
     }

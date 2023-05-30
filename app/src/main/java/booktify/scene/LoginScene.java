@@ -44,9 +44,11 @@ public class LoginScene {
         TextField tfUsername = new TextField();
         tfUsername.setMaxWidth(380);
         tfUsername.setMaxHeight(1000);
+        tfUsername.setPromptText("Username");
         PasswordField tfPass = new PasswordField();
         tfPass.setMaxWidth(380);
         tfPass.setMaxHeight(1000);
+        tfPass.setPromptText("Password");
 
         // tfUsername.setPrefWidth(10);
         // tfPass.setPrefHeight(10);

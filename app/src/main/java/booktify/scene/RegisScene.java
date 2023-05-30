@@ -27,10 +27,12 @@ public class RegisScene {
         TextField tfUsername = new TextField();
         tfUsername.setMaxWidth(380);
         tfUsername.setMaxHeight(1000);
+        tfUsername.setPromptText("Username");
         Label lbStrongUsername = new Label("ket: bla bla");
         PasswordField tfPassword = new PasswordField();
         tfPassword.setMaxWidth(380);
         tfPassword.setMaxHeight(1000);
+        tfPassword.setPromptText("Password");
         Label lbStrongPassword = new Label("Ket: Password harus memiliki minimal bla bla bla");
 
         VBox vLayoutTextField = new VBox(tfUsername, lbStrongUsername, tfPassword, lbStrongPassword);

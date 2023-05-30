@@ -51,6 +51,11 @@ public class HomeScene {
             stage.setScene(loginScene.show());
         });
 
+        cekSaldo.setOnMouseClicked(v -> {
+            SaldoScene saldoScene = new SaldoScene(stage);
+            stage.setScene(saldoScene.show());
+        });
+
         Region spacerNavbar = new Region();
         spacerNavbar.setPrefSize(60, 0);
 

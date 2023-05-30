@@ -1,28 +1,18 @@
 package booktify.models;
 
 public class Books {
-    private int ID;
     private String name;
     private String author;
-    private String penerbit;
     private String category;
     private int price;
     private int stock;
     
-    public Books(int iD, String name, String author, String penerbit, String category, int price, int stock) {
-        ID = iD;
+    public Books(String name, String author, String category, int price, int stock) {
         this.name = name;
         this.author = author;
-        this.penerbit = penerbit;
         this.category = category;
         this.price = price;
         this.stock = stock;
-    }
-    public int getID() {
-        return ID;
-    }
-    public void setID(int iD) {
-        ID = iD;
     }
     public String getName() {
         return name;
@@ -35,12 +25,6 @@ public class Books {
     }
     public void setAuthor(String author) {
         this.author = author;
-    }
-    public String getPenerbit() {
-        return penerbit;
-    }
-    public void setPenerbit(String penerbit) {
-        this.penerbit = penerbit;
     }
     public String getCategory() {
         return category;

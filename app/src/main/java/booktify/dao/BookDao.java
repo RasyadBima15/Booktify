@@ -5,7 +5,10 @@ import java.sql.DatabaseMetaData;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
+import booktify.models.Books;
 import booktify.utils.DatabaseConfig;
 
 public class BookDao {
@@ -33,6 +36,25 @@ public class BookDao {
             }
         } catch (SQLException e) {
             e.printStackTrace();
+        }
+    }
+
+    public List<Books> get(String category, String nameBook) throws SQLException {
+        try {
+            List<Books> listBooks = new ArrayList<>();
+            stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery("SELECT nama, penulis, kategori, harga, stock FROM books WHERE kategori = " + category + " AND nama = " + nameBook);
+            while (rs.next()) {
+                String name = rs.getString("nama");
+                String penulis = rs.getString("penulis");
+                String kategori = rs.getString("kategori");
+                int harga = rs.getInt("harga");
+                int stock = rs.getInt("stock");
+                listBooks.add(new Books(name, penulis, kategori, harga, stock));
+            }
+            return listBooks;
+        } catch (SQLException e) {
+            throw new SQLException();
         }
     }
 }

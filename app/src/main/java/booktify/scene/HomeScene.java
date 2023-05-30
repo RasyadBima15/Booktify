@@ -41,6 +41,16 @@ public class HomeScene {
         Label historyPurchase = new Label("Riwayat Pembelian");
         Label logout = new Label("Logout");
 
+        listBooks.setOnMouseClicked(v -> {
+            TransactionScene transactionScene = new TransactionScene(stage);
+            stage.setScene(transactionScene.show());
+        });
+
+        logout.setOnMouseClicked(v -> {
+            LoginScene loginScene = new LoginScene(stage);
+            stage.setScene(loginScene.show());
+        });
+
         Region spacerNavbar = new Region();
         spacerNavbar.setPrefSize(60, 0);
 

@@ -28,7 +28,6 @@ public class BookDao {
                     "(id INTEGER PRIMARY KEY AUTOINCREMENT, " +
                     " nama VARCHAR(255) NOT NULL, " + 
                     " penulis VARCHAR(255) NOT NULL, " +
-                    " penerbit VARCHAR(255) NOT NULL, " +
                     " kategori VARCHAR(255) NOT NULL" + 
                     " harga INTEGER NOT NULL, " +
                     " stock INTEGER NOT NULL";
@@ -45,17 +44,18 @@ public class BookDao {
             stmt = conn.createStatement();
             ResultSet rs;
             if (category == null){
-                rs = stmt.executeQuery("SELECT nama, penulis, kategori, harga, stock FROM books WHERE kategori nama = " + nameBook);
+                rs = stmt.executeQuery("SELECT * FROM books WHERE nama = " + nameBook);
             } else {
-                rs = stmt.executeQuery("SELECT nama, penulis, kategori, harga, stock FROM books WHERE kategori = " + category + " AND nama = " + nameBook);
+                rs = stmt.executeQuery("SELECT * FROM books WHERE kategori = " + category + " AND nama = " + nameBook);
             }
             while (rs.next()) {
+                int id = rs.getInt("id");
                 String name = rs.getString("nama");
                 String penulis = rs.getString("penulis");
                 String kategori = rs.getString("kategori");
                 int harga = rs.getInt("harga");
                 int stock = rs.getInt("stock");
-                listBooks.add(new Books(name, penulis, kategori, harga, stock));
+                listBooks.add(new Books(id, name, penulis, kategori, harga, stock));
             }
             return listBooks;
         } catch (SQLException e) {
@@ -68,16 +68,40 @@ public class BookDao {
             stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery("SELECT nama, penulis, kategori, harga, stock FROM books WHERE kategori = " + category);
             while (rs.next()) {
+                int id = rs.getInt("id");
                 String name = rs.getString("nama");
                 String penulis = rs.getString("penulis");
                 String kategori = rs.getString("kategori");
                 int harga = rs.getInt("harga");
                 int stock = rs.getInt("stock");
-                listBooks.add(new Books(name, penulis, kategori, harga, stock));
+                listBooks.add(new Books(id,name, penulis, kategori, harga, stock));
             }
             return listBooks;
         } catch (SQLException e) {
             throw new SQLException();
         }
+    }
+    // public void syncData(List<Books> listBook) {
+    //     try {
+    //         stmt.executeUpdate("DELETE from books");
+    //         stmt = conn.createStatement();
+    //         for (Books book : listBook){
+    //             String sql = String.format("""
+    //                 INSERT INTO books(nama, penulis, kategori, harga, stock) 
+    //                 VALUES('%s', '%s', '%s', '%d', '%d')
+    //             """, 
+    //             book.getName(),
+    //             book.getAuthor(),
+    //             book.getCategory(),
+    //             book.getPrice(),
+    //             book.getStock());
+    //             stmt.executeUpdate(sql);
+    //         }
+    //     } catch (SQLException e) {
+    //         e.printStackTrace();
+    //     }
+    // }
+    public void delete() {
+        
     }
 }

@@ -1,23 +1,23 @@
 package booktify.models;
 
 public class Customer {
-    private int id;
+    // private int id;
     private String username;
     private String password;
     private int uang;
     
-    public Customer(int id, String username, String password, int uang) {
-        this.id = id;
+    public Customer(String username, String password, int uang) {
+        // this.id = id;
         this.username = username;
         this.password = password;
         this.uang = uang;
     }
-    public int getid() {
-        return id;
-    }
-    public void setid(int id) {
-        this.id = id;
-    }
+    // public int getid() {
+    //     return id;
+    // }
+    // public void setid(int id) {
+    //     this.id = id;
+    // }
     public String getUsername() {
         return username;
     }

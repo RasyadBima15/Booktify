@@ -1,13 +1,21 @@
 package booktify.models;
 
 public class Books {
+    private int id;
+    public int getId() {
+        return id;
+    }
+    public void setId(int id) {
+        this.id = id;
+    }
     private String name;
     private String author;
     private String category;
     private int price;
     private int stock;
     
-    public Books(String name, String author, String category, int price, int stock) {
+    public Books(int id, String name, String author, String category, int price, int stock) {
+        this.id = id;
         this.name = name;
         this.author = author;
         this.category = category;

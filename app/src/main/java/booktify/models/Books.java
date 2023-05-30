@@ -1,4 +1,4 @@
-package booktify.fitur;
+package booktify.models;
 
 public class Books {
     private int ID;

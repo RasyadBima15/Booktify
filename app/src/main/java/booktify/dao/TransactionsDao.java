@@ -18,7 +18,7 @@ public class TransactionsDao {
     private void setupTable(){
         try {
             DatabaseMetaData meta = conn.getMetaData();
-            ResultSet rs = meta.getTables(null, null, "booktify", null);
+            ResultSet rs = meta.getTables(null, null, "transactions", null);
             if (!rs.next()){
                 stmt = conn.createStatement();
                 String sql = "CREATE TABLE transactions " +
@@ -27,7 +27,7 @@ public class TransactionsDao {
                     " id_book INTEGER NOT NULL, " +
                     " tanggal VARCHAR(255) NOT NULL, " +
                     " FOREIGN KEY (id_customer) REFERENCES customers(id), " +
-                    " FOREIGN KEY (id_book) REFERENCES books(id)";
+                    " FOREIGN KEY (id_book) REFERENCES books(id))";
                 stmt.executeUpdate(sql);
             }
         } catch (SQLException e) {

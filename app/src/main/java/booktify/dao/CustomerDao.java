@@ -18,14 +18,14 @@ public class CustomerDao {
     private void setupTable(){
         try {
             DatabaseMetaData meta = conn.getMetaData();
-            ResultSet rs = meta.getTables(null, null, "booktify", null);
+            ResultSet rs = meta.getTables(null, null, "customers", null);
             if (!rs.next()){
                 stmt = conn.createStatement();
                 String sql = "CREATE TABLE customers " +
                     "(id INTEGER PRIMARY KEY AUTOINCREMENT, " +
                     " username VARCHAR(255) NOT NULL UNIQUE, " + 
                     "password VARCHAR(255) NOT NULL UNIQUE, " +
-                    "uang INTEGER NOT NULL, ";
+                    "uang INTEGER NOT NULL)";
                 stmt.executeUpdate(sql);
             }
         } catch (SQLException e) {

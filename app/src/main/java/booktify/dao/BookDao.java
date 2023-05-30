@@ -84,6 +84,10 @@ public class BookDao {
     public void insert(List<Books> listBook) {
         try {
             stmt = conn.createStatement();
+            stmt.executeUpdate("DELETE from books");
+            // DatabaseMetaData meta = conn.getMetaData();
+            // ResultSet rs = meta.getTables(null, null, "books", null);
+            // boolean tableExist = rs.next();
             for (Books book : listBook){
                 String sql = String.format("""
                     INSERT INTO books(nama, penulis, kategori, harga, stock) 

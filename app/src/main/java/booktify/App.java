@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import booktify.dao.BookDao;
+import booktify.dao.CustomerDao;
+import booktify.dao.TransactionsDao;
 import booktify.models.Books;
 import booktify.scene.LoginScene;
 import javafx.application.Application;
@@ -29,6 +31,9 @@ public class App extends Application {
 
         BookDao bookDao = new BookDao();
         bookDao.insert(listBooks);
+
+        CustomerDao customerDao = new CustomerDao();
+        TransactionsDao transactionsDao = new TransactionsDao();
 
         launch(args);
     }

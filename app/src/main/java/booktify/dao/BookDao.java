@@ -28,9 +28,9 @@ public class BookDao {
                     "(id INTEGER PRIMARY KEY AUTOINCREMENT, " +
                     " nama VARCHAR(255) NOT NULL, " + 
                     " penulis VARCHAR(255) NOT NULL, " +
-                    " kategori VARCHAR(255) NOT NULL" + 
+                    " kategori VARCHAR(255) NOT NULL, " + 
                     " harga INTEGER NOT NULL, " +
-                    " stock INTEGER NOT NULL";
+                    " stock INTEGER NOT NULL)";
                 stmt.executeUpdate(sql);
             }
         } catch (SQLException e) {
@@ -81,27 +81,30 @@ public class BookDao {
             throw new SQLException();
         }
     }
-    // public void syncData(List<Books> listBook) {
-    //     try {
-    //         stmt.executeUpdate("DELETE from books");
-    //         stmt = conn.createStatement();
-    //         for (Books book : listBook){
-    //             String sql = String.format("""
-    //                 INSERT INTO books(nama, penulis, kategori, harga, stock) 
-    //                 VALUES('%s', '%s', '%s', '%d', '%d')
-    //             """, 
-    //             book.getName(),
-    //             book.getAuthor(),
-    //             book.getCategory(),
-    //             book.getPrice(),
-    //             book.getStock());
-    //             stmt.executeUpdate(sql);
-    //         }
-    //     } catch (SQLException e) {
-    //         e.printStackTrace();
-    //     }
-    // }
-    public void delete() {
-        
+    public void insert(List<Books> listBook) {
+        try {
+            stmt = conn.createStatement();
+            for (Books book : listBook){
+                String sql = String.format("""
+                    INSERT INTO books(nama, penulis, kategori, harga, stock) 
+                    VALUES('%s', '%s', '%s', '%d', '%d')
+                """, 
+                book.getName(),
+                book.getAuthor(),
+                book.getCategory(),
+                book.getPrice(),
+                book.getStock());
+                stmt.executeUpdate(sql);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+    public void delete(int bookId) {
+        try {
+            stmt.executeUpdate("DELETE from books WHERE id = " + bookId);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }

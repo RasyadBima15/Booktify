@@ -3,12 +3,33 @@
  */
 package booktify;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import booktify.dao.BookDao;
+import booktify.models.Books;
 import booktify.scene.LoginScene;
 import javafx.application.Application;
 import javafx.stage.Stage;
  
 public class App extends Application {
     public static void main(String[] args) {
+        Books book1 = new Books("Laut Bercerita", "Leila Salikha Chudori", "Novel", 92000, 5);
+        Books book2 = new Books("Atomic Habits", "James Clear", "Self Improvement", 109000, 7);
+        Books book3 = new Books("Detektif Conan", "Aoyama Gosho", "Manga", 21000, 9);
+        Books book4 = new Books("Oshi No Ko", "Aka Akasaka", "Manga", 36000, 8);
+        Books book5 = new Books("Kecerdasan Matematis: Kisah Tentang Superioritas Manusia", "Junaid Mubeen", "Teknologi", 97000, 6);
+
+        List<Books> listBooks = new ArrayList<>();
+        listBooks.add(book1);
+        listBooks.add(book2);
+        listBooks.add(book3);
+        listBooks.add(book4);
+        listBooks.add(book5);
+
+        BookDao bookDao = new BookDao();
+        bookDao.insert(listBooks);
+
         launch(args);
     }
     

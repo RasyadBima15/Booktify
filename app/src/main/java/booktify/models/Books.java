@@ -22,6 +22,13 @@ public class Books {
         this.price = price;
         this.stock = stock;
     }
+    public Books(String name, String author, String category, int price, int stock) {
+        this.name = name;
+        this.author = author;
+        this.category = category;
+        this.price = price;
+        this.stock = stock;
+    }
     public String getName() {
         return name;
     }

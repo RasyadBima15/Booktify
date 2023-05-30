@@ -43,7 +43,30 @@ public class BookDao {
         try {
             List<Books> listBooks = new ArrayList<>();
             stmt = conn.createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT nama, penulis, kategori, harga, stock FROM books WHERE kategori = " + category + " AND nama = " + nameBook);
+            ResultSet rs;
+            if (category == null){
+                rs = stmt.executeQuery("SELECT nama, penulis, kategori, harga, stock FROM books WHERE kategori nama = " + nameBook);
+            } else {
+                rs = stmt.executeQuery("SELECT nama, penulis, kategori, harga, stock FROM books WHERE kategori = " + category + " AND nama = " + nameBook);
+            }
+            while (rs.next()) {
+                String name = rs.getString("nama");
+                String penulis = rs.getString("penulis");
+                String kategori = rs.getString("kategori");
+                int harga = rs.getInt("harga");
+                int stock = rs.getInt("stock");
+                listBooks.add(new Books(name, penulis, kategori, harga, stock));
+            }
+            return listBooks;
+        } catch (SQLException e) {
+            throw new SQLException();
+        }
+    }
+    public List<Books> get(String category) throws SQLException {
+        try {
+            List<Books> listBooks = new ArrayList<>();
+            stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery("SELECT nama, penulis, kategori, harga, stock FROM books WHERE kategori = " + category);
             while (rs.next()) {
                 String name = rs.getString("nama");
                 String penulis = rs.getString("penulis");

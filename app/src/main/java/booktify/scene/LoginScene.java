@@ -84,26 +84,31 @@ public class LoginScene {
             } catch (SQLException e) {
                 e.printStackTrace();
             }
-            if (!listCustomer.isEmpty()){
+            if (!listCustomer.isEmpty()) {
                 String usernameDao = listCustomer.get(0).getUsername();
                 String hashedPassword = listCustomer.get(0).getPassword();
-
-                if (username.equals(usernameDao) && BCrypt.checkpw(password, hashedPassword)){
+        
+                if (username.equals(usernameDao) && BCrypt.checkpw(password, hashedPassword)) {
                     HomeScene homeScene = new HomeScene(stage);
                     stage.setScene(homeScene.show());
-                } else if (username.equals(usernameDao) && !BCrypt.checkpw(password, hashedPassword)){
+                } else {
                     spLayout.getChildren().clear();
-                    VBox vLayout = new VBox(ivLogo, textBrand, lbDesc, space, textLogin, tfUsername, tfPass, lbLoginFailed, btnLogin, flwPane );
+                    VBox vLayout = new VBox(ivLogo, textBrand, lbDesc, space, textLogin, tfUsername, tfPass, lbLoginFailed, btnLogin, flwPane);
                     vLayout.setSpacing(10);
                     spLayout.getChildren().add(vLayout);
                     vLayout.setAlignment(Pos.CENTER);
-                } else if (username.equals(usernameDao) && !BCrypt.checkpw(password, hashedPassword)){
-                    spLayout.getChildren().clear();
-                    VBox vLayout = new VBox(ivLogo, textBrand, lbDesc, space, textLogin, tfUsername, tfPass, btnLogin, lbLoginFailed, lbLoginFailed, flwPane );
-                    vLayout.setSpacing(10);
-                    spLayout.getChildren().add(vLayout);
-                    vLayout.setAlignment(Pos.CENTER);
+                    
+                    lbLoginFailed.setText("Password tidak valid!");
+                    
                 }
+            } else {
+                spLayout.getChildren().clear();
+                VBox vLayout = new VBox(ivLogo, textBrand, lbDesc, space, textLogin, tfUsername, tfPass, lbLoginFailed, btnLogin, flwPane);
+                vLayout.setSpacing(10);
+                spLayout.getChildren().add(vLayout);
+                vLayout.setAlignment(Pos.CENTER);
+        
+                lbLoginFailed.setText("Username atau password tidak valid!");
             }
         });
 

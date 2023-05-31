@@ -13,6 +13,7 @@ import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
@@ -71,28 +72,44 @@ public class HomeScene {
         vNavbar.setAlignment(Pos.TOP_CENTER);
         vNavbar.getStyleClass().add("navbar");
 
-        // Region spacerContent = new Region();
-        // spacerContent.setPrefSize(300, 0);
-
-        Text tHome = new Text("Selamat Datang di Booktify,");
+        Text tHome = new Text("Selamat Datang di Booktify");
         Text tHomeUser = new Text("{ Nama }");
-
+        tHome.setFont(Font.font("Britannic", 30));
         VBox vContent = new VBox(tHome, tHomeUser);
         vContent.setAlignment(Pos.CENTER);
 
-        Text tContact = new Text("Contact Admin");
-        Text tNumPhone = new Text("+628871293167");
-        VBox vContactAdmin = new VBox(tContact, tNumPhone);
-        vContactAdmin.setAlignment(Pos.CENTER);
- 
-        VBox vLayout = new VBox(vNavbar, vContent, vContactAdmin);
+        Text Ind = new Text("Toko buku online terbesar, terlengkap dan terpercaya di Indonesia");
+        Ind.setFont(Font.font("Britannic", 15));
+        VBox Indd = new VBox(Ind);
+        Indd.setAlignment(Pos.CENTER);
+
+        Label cp = new Label("Contact Admin");
+        Label no = new Label("+628871293167");
+        Label ig = new Label("@booktify.acc");
+
+        Region sc = new Region();
+        sc.setPrefSize(60, 0);
+        HBox tc = new HBox(cp, no, sc,ig);
+        tc.setSpacing(10);
+        tc.setAlignment(Pos.CENTER);
+        // HBox ct = new HBox(tc);
+        // ct.setAlignment(Pos.BOTTOM_CENTER);
+        // ct.setPadding(new Insets(10));
+        VBox tcc = new VBox(tc);
+        tcc.setAlignment(Pos.BOTTOM_CENTER);
+        tcc.getStyleClass().add("barbar");
+
+        // Text tContact = new Text("Contact Admin");
+        // Text tNumPhone = new Text("+628871293167");
+        // VBox vContactAdmin = new VBox(tContact, tNumPhone);
+        // vContactAdmin.setAlignment(Pos.CENTER);
+
+        VBox vLayout = new VBox(vNavbar, vContent,Indd,tc);
         vLayout.setAlignment(Pos.TOP_CENTER);
 
         VBox.setMargin(vContent, new Insets(150, 0, 150, 0));
 
-        // VBox vLayout = new VBox(ivLogo, textBrand, lbDesc, space, textLogin, tfUsername, tfPass, btnLogin, flwPane );
-        // vLayout.setSpacing(10);
         spLayout.getChildren().add(vLayout);
-        return scene;  
+        return scene;
     }
 }

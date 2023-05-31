@@ -103,7 +103,6 @@ public class BookDao {
     public void insert(List<Books> listBook) {
         try {
             stmt = conn.createStatement();
-            stmt.executeUpdate("DELETE from books");
             // DatabaseMetaData meta = conn.getMetaData();
             // ResultSet rs = meta.getTables(null, null, "books", null);
             // boolean tableExist = rs.next();
@@ -112,7 +111,7 @@ public class BookDao {
                     INSERT INTO books(id, nama, penulis, kategori, harga, stock) 
                     VALUES('%d', '%s', '%s', '%s', '%d', '%d')
                 """,
-                index,
+                index + 1,
                 listBook.get(index).getName(),
                 listBook.get(index).getAuthor(),
                 listBook.get(index).getCategory(),

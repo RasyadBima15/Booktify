@@ -24,6 +24,7 @@ dependencies {
     // This dependency is used by the application.
     implementation 'com.google.guava:guava:31.1-jre'
     implementation 'org.xerial:sqlite-jdbc:3.36.0.1'
+    implementation 'org.mindrot:jbcrypt:0.4'
 }
 
 application {

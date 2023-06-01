@@ -29,7 +29,7 @@ public class RegisScene {
     public RegisScene(Stage stage){
         this.stage = stage;
     }
-   
+
     public Scene show() {
         StackPane spLayout = new StackPane();
         Scene scene = new Scene(spLayout, 640, 480);

@@ -1,6 +1,12 @@
 .navbar {
     -fx-background-color: #60b7ed;
 }
+<<<<<<< HEAD
 .menu-active {
     -fx-background-color: #ffffff;
+=======
+
+.barbar{
+    -fx-background-color: #60b7ed;
+>>>>>>> 00459ff3897ef5c22b780332deaba0ce7b75b2a4
 }

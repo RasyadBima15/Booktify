@@ -27,7 +27,7 @@ public class LoginScene {
     private Stage stage;
     public static String username;
 
-    public LoginScene(Stage stage){
+    public LoginScene(Stage stage) {
         this.stage = stage;
     }
 
@@ -118,7 +118,15 @@ public class LoginScene {
             }
         });
 
+<<<<<<< HEAD
+        FlowPane flwPane = new FlowPane();
+        flwPane.getChildren().addAll(textRegis, regis);
+        flwPane.setAlignment(Pos.CENTER);
+
+        VBox vLayout = new VBox(ivLogo, textBrand, lbDesc, space, textLogin, tfUsername, tfPass, btnLogin, flwPane);
+=======
         VBox vLayout = new VBox(ivLogo, textBrand, lbDesc, space, textLogin, tfUsername, tfPass, btnLogin, flwPane );
+>>>>>>> eebfe5fa5082faeaec9f489d891829325ea8652b
         vLayout.setSpacing(10);
         spLayout.getChildren().add(vLayout);
         vLayout.setAlignment(Pos.CENTER);

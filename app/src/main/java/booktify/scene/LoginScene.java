@@ -18,7 +18,7 @@ import javafx.stage.Stage;
 public class LoginScene {
     private Stage stage;
 
-    public LoginScene(Stage stage){
+    public LoginScene(Stage stage) {
         this.stage = stage;
     }
 
@@ -71,7 +71,7 @@ public class LoginScene {
         flwPane.getChildren().addAll(textRegis, regis);
         flwPane.setAlignment(Pos.CENTER);
 
-        VBox vLayout = new VBox(ivLogo, textBrand, lbDesc, space, textLogin, tfUsername, tfPass, btnLogin, flwPane );
+        VBox vLayout = new VBox(ivLogo, textBrand, lbDesc, space, textLogin, tfUsername, tfPass, btnLogin, flwPane);
         vLayout.setSpacing(10);
         spLayout.getChildren().add(vLayout);
         vLayout.setAlignment(Pos.CENTER);

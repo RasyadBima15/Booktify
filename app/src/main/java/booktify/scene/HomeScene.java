@@ -1,7 +1,6 @@
 package booktify.scene;
 
 import javax.management.BadBinaryOpValueExpException;
-
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -32,7 +31,6 @@ public class HomeScene {
         ImageView ivLogo = new ImageView("/images/logoBooktify.jpg");
         ivLogo.setFitHeight(50);
         ivLogo.setFitWidth(50);
-
         HBox hboxLogo = new HBox(ivLogo);
         hboxLogo.setAlignment(Pos.TOP_LEFT);
 
@@ -43,8 +41,10 @@ public class HomeScene {
         Label logout = new Label("Logout");
 
         listBooks.setOnMouseClicked(v -> {
+            System.out.println("tes");
             TransactionScene transactionScene = new TransactionScene(stage);
             stage.setScene(transactionScene.show());
+
         });
 
         logout.setOnMouseClicked(v -> {
@@ -83,19 +83,34 @@ public class HomeScene {
         VBox Indd = new VBox(Ind);
         Indd.setAlignment(Pos.CENTER);
 
+        ImageView waLogo = new ImageView("/images/WA.png");
+        waLogo.setFitHeight(15);
+        waLogo.setFitWidth(15);
+        HBox hbwlogo = new HBox(waLogo);
+        hbwlogo.setAlignment(Pos.BOTTOM_LEFT);
+
+        ImageView igLogo = new ImageView("/images/IG2.png");
+        igLogo.setFitHeight(15);
+        igLogo.setFitWidth(15);
+        HBox hbilogo = new HBox(igLogo);
+        hbilogo.setAlignment(Pos.BOTTOM_RIGHT);
+
         Label cp = new Label("Contact Admin");
         Label no = new Label("+628871293167");
         Label ig = new Label("@booktify.acc");
 
         Region sc = new Region();
         sc.setPrefSize(60, 0);
-        HBox tc = new HBox(cp, no, sc,ig);
+
+        HBox tc = new HBox(cp, no, ig, sc);
         tc.setSpacing(10);
         tc.setAlignment(Pos.CENTER);
-        // HBox ct = new HBox(tc);
-        // ct.setAlignment(Pos.BOTTOM_CENTER);
-        // ct.setPadding(new Insets(10));
-        VBox tcc = new VBox(tc);
+
+        HBox ct = new HBox(hbwlogo, hbilogo, tc);
+        ct.setAlignment(Pos.BOTTOM_CENTER);
+        ct.setPadding(new Insets(10));
+
+        VBox tcc = new VBox(ct);
         tcc.setAlignment(Pos.BOTTOM_CENTER);
         tcc.getStyleClass().add("barbar");
 
@@ -104,12 +119,16 @@ public class HomeScene {
         // VBox vContactAdmin = new VBox(tContact, tNumPhone);
         // vContactAdmin.setAlignment(Pos.CENTER);
 
-        VBox vLayout = new VBox(vNavbar, vContent,Indd,tc);
+        VBox vL = new VBox(tcc);
+        vL.setAlignment(Pos.BOTTOM_CENTER);
+
+        VBox vLayout = new VBox(vNavbar, vContent,Indd,vL);
         vLayout.setAlignment(Pos.TOP_CENTER);
 
         VBox.setMargin(vContent, new Insets(150, 0, 150, 0));
 
         spLayout.getChildren().add(vLayout);
+        // spLayout.getChildren().add(vL);
         return scene;
     }
 }

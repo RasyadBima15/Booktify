@@ -1,5 +1,13 @@
 package booktify.scene;
 
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
+import org.mindrot.jbcrypt.BCrypt;
+
+import booktify.dao.CustomerDao;
+import booktify.models.Customer;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -37,7 +45,7 @@ public class LoginScene {
         lbDesc.getStyleClass().add("desc-text");
 
         Region space = new Region();
-        space.setPrefHeight(12);
+        space.setPrefHeight(10);
 
         Text textLogin = new Text("Login");
 
@@ -50,12 +58,16 @@ public class LoginScene {
         tfPass.setMaxHeight(1000);
         tfPass.setPromptText("Password");
 
-        // tfUsername.setPrefWidth(10);
-        // tfPass.setPrefHeight(10);
+        Label lbLoginFailed = new Label("Username atau password tidak valid!");
+        lbLoginFailed.setAlignment(Pos.CENTER);
 
         Button btnLogin = new Button("Masuk");
         Text textRegis = new Text("Belum punya akun? ayo");
         Hyperlink regis = new Hyperlink("daftar");
+
+        FlowPane flwPane = new FlowPane();
+        flwPane.getChildren().addAll(textRegis, regis);
+        flwPane.setAlignment(Pos.CENTER);
 
         regis.setOnAction(v -> {
             RegisScene regisScene = new RegisScene(stage);
@@ -63,15 +75,52 @@ public class LoginScene {
         });
 
         btnLogin.setOnAction(v -> {
-            HomeScene homeScene = new HomeScene(stage);
-            stage.setScene(homeScene.show());
+            List<Customer> listCustomer = new ArrayList<>();
+            CustomerDao cusDao = new CustomerDao();
+            String username = tfUsername.getText();
+            String password = tfPass.getText();
+            try {
+                listCustomer.addAll(cusDao.get(username));
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+            if (!listCustomer.isEmpty()) {
+                String usernameDao = listCustomer.get(0).getUsername();
+                String hashedPassword = listCustomer.get(0).getPassword();
+        
+                if (username.equals(usernameDao) && BCrypt.checkpw(password, hashedPassword)) {
+                    HomeScene homeScene = new HomeScene(stage);
+                    stage.setScene(homeScene.show());
+                } else {
+                    spLayout.getChildren().clear();
+                    VBox vLayout = new VBox(ivLogo, textBrand, lbDesc, space, textLogin, tfUsername, tfPass, lbLoginFailed, btnLogin, flwPane);
+                    vLayout.setSpacing(10);
+                    spLayout.getChildren().add(vLayout);
+                    vLayout.setAlignment(Pos.CENTER);
+                    
+                    lbLoginFailed.setText("Password tidak valid!");
+                    
+                }
+            } else {
+                spLayout.getChildren().clear();
+                VBox vLayout = new VBox(ivLogo, textBrand, lbDesc, space, textLogin, tfUsername, tfPass, lbLoginFailed, btnLogin, flwPane);
+                vLayout.setSpacing(10);
+                spLayout.getChildren().add(vLayout);
+                vLayout.setAlignment(Pos.CENTER);
+        
+                lbLoginFailed.setText("Username atau password tidak valid!");
+            }
         });
 
+<<<<<<< HEAD
         FlowPane flwPane = new FlowPane();
         flwPane.getChildren().addAll(textRegis, regis);
         flwPane.setAlignment(Pos.CENTER);
 
         VBox vLayout = new VBox(ivLogo, textBrand, lbDesc, space, textLogin, tfUsername, tfPass, btnLogin, flwPane);
+=======
+        VBox vLayout = new VBox(ivLogo, textBrand, lbDesc, space, textLogin, tfUsername, tfPass, btnLogin, flwPane );
+>>>>>>> eebfe5fa5082faeaec9f489d891829325ea8652b
         vLayout.setSpacing(10);
         spLayout.getChildren().add(vLayout);
         vLayout.setAlignment(Pos.CENTER);

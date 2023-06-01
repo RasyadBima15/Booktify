@@ -5,12 +5,20 @@ public class Customer {
     private String username;
     private String password;
     private int uang;
+    private int token;
     
-    public Customer(String username, String password, int uang) {
+    public int getToken() {
+        return token;
+    }
+    public void setToken(int token) {
+        this.token = token;
+    }
+    public Customer(String username, String password, int uang, int token) {
         // this.id = id;
         this.username = username;
         this.password = password;
         this.uang = uang;
+        this.token = token;
     }
     // public int getid() {
     //     return id;

@@ -1,3 +1,6 @@
 .navbar {
     -fx-background-color: #60b7ed;
 }
+.menu-active {
+    -fx-background-color: #ffffff;
+}

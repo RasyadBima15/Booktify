@@ -54,7 +54,6 @@ public class CustomerDao {
             e.printStackTrace();
         }
     }
-
     public List<Customer> get(String username) throws SQLException {
         try {
             List<Customer> listBooks = new ArrayList<>();
@@ -75,7 +74,7 @@ public class CustomerDao {
     public void unactivateToken(String username) throws SQLException {
         try {
             stmt = conn.createStatement();
-            stmt.executeUpdate("UPDATE customers SET token = 0 WHERE username = " + username);
+            stmt.executeUpdate("UPDATE customers SET token = 0 WHERE username = '" + username + "'");
         } catch (SQLException e) {
             throw new SQLException();
         }
@@ -92,5 +91,14 @@ public class CustomerDao {
             throw new SQLException();
         }
         return exist;
+    }
+    public int addBalance(String username, int uang) throws SQLException {
+        try {
+            stmt = conn.createStatement();
+            int id = stmt.executeUpdate("UPDATE customers SET uang = '" + (uang + 300000) + "'" + " WHERE username = '" + username + "'" + " AND TOKEN = 1 RETURNING id" );
+            return id;
+        } catch (SQLException e) {
+            throw new SQLException();
+        }
     }
 }

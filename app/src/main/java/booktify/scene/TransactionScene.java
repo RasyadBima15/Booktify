@@ -1,5 +1,7 @@
 package booktify.scene;
 
+import java.sql.SQLException;
+
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -31,7 +33,11 @@ public class TransactionScene {
 
         btnBatal.setOnAction(v -> {
             HomeScene homeScene = new HomeScene(stage);
-            stage.setScene(homeScene.show());
+            try {
+                stage.setScene(homeScene.show());
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         });
 
         TextField jumlahStok = new TextField();

@@ -25,6 +25,7 @@ import javafx.stage.Stage;
 
 public class LoginScene {
     private Stage stage;
+    public static String username;
 
     public LoginScene(Stage stage){
         this.stage = stage;
@@ -89,8 +90,13 @@ public class LoginScene {
                 String hashedPassword = listCustomer.get(0).getPassword();
         
                 if (username.equals(usernameDao) && BCrypt.checkpw(password, hashedPassword)) {
+                    this.username = listCustomer.get(0).getUsername();
                     HomeScene homeScene = new HomeScene(stage);
-                    stage.setScene(homeScene.show());
+                    try {
+                        stage.setScene(homeScene.show());
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                    }
                 } else {
                     spLayout.getChildren().clear();
                     VBox vLayout = new VBox(ivLogo, textBrand, lbDesc, space, textLogin, tfUsername, tfPass, lbLoginFailed, btnLogin, flwPane);

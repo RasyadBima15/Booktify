@@ -17,11 +17,9 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
-import javafx.scene.control.SplitMenuButton;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
-import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
@@ -70,6 +68,7 @@ public class LoginScene extends Login implements ShowScene {
         lbLoginFailed.setAlignment(Pos.CENTER);
 
         Button btnLogin = new Button("Masuk");
+        btnLogin.getStyleClass().add("btn-masuk");
         Text textRegis = new Text("Belum punya akun? ayo");
         Hyperlink regis = new Hyperlink("daftar");
 
@@ -90,7 +89,7 @@ public class LoginScene extends Login implements ShowScene {
         spLayout.getChildren().add(vLayout);
         vLayout.setAlignment(Pos.CENTER);
         vLayout.getStyleClass().add("login");
-        vLayout.setPadding(new Insets(0, 0, 60, 0));
+        vLayout.setPadding(new Insets(0, 0, 10, 0));
 
         regis.setOnAction(v -> {
             RegisScene regisScene = new RegisScene(stage);
@@ -126,7 +125,7 @@ public class LoginScene extends Login implements ShowScene {
                     spLayout.getChildren().add(vLayout2);
                     spLayout.getStyleClass().add("login");
                     vLayout2.setAlignment(Pos.CENTER);
-                    vLayout2.setPadding(new Insets(0, 0, 60, 0));
+                    vLayout2.setPadding(new Insets(0, 0, 10, 0));
                     
                     lbLoginFailed.setText("Password tidak valid!");
                     
@@ -138,7 +137,7 @@ public class LoginScene extends Login implements ShowScene {
                 spLayout.getChildren().add(vLayout3);
                 spLayout.getStyleClass().add("login");
                 vLayout3.setAlignment(Pos.CENTER);
-                vLayout3.setPadding(new Insets(0, 0, 60, 0));
+                vLayout3.setPadding(new Insets(0, 0, 10, 0));
         
                 lbLoginFailed.setText("Username atau password tidak valid!");
             }

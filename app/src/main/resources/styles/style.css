@@ -17,3 +17,12 @@
 .login {
     -fx-background-color: #ffffff
 }
+.btn-masuk, .btn-beli {
+    -fx-background-color: #FAF0E6;
+	-fx-text-fill: "#323232";
+	-fx-font-size: 15px;
+	-fx-font-weight: bold;
+	-fx-min-width: 171px;
+	-fx-min-height: 38px;
+	-fx-background-radius: 42px;
+}

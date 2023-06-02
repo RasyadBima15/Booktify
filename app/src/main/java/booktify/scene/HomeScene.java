@@ -125,7 +125,7 @@ public class HomeScene extends Home implements ShowScene {
         bottomSide.getChildren().clear();
         VBox vLayout = new VBox();
         List<Customer> listCustomer = new ArrayList<>();
-        Text tHome = new Text("ToKuFarma Selamat Datang di Booktify,");
+        Text tHome = new Text("Selamat Datang di Booktify,");
         tHome.setFont(Font.font(33));
         tHome.setStyle("-fx-font-weight: bold;");
         CustomerDao custDao = new CustomerDao();
@@ -259,6 +259,7 @@ public class HomeScene extends Home implements ShowScene {
         tableBooks.setItems(listBooks);
 
         Button btnBuy = new Button("Beli");
+        btnBuy.getStyleClass().add("btn-beli");
         btnBuy.setPrefWidth(200);
         
         btnBuy.setOnAction(v -> {
@@ -272,6 +273,7 @@ public class HomeScene extends Home implements ShowScene {
                 noneStock.setTextAlignment(TextAlignment.CENTER);
 
                 Button back = new Button("Kembali ke daftar buku");
+                back.getStyleClass().add("btn-beli");
                 back.setAlignment(Pos.CENTER);
 
                 back.setOnAction(r -> {
@@ -295,6 +297,8 @@ public class HomeScene extends Home implements ShowScene {
                     noneStock.setTextAlignment(TextAlignment.CENTER);
 
                     Button back = new Button("Kembali ke daftar buku");
+                    back.getStyleClass().add("btn-beli");
+
                     back.setAlignment(Pos.CENTER);
 
                     back.setOnAction(r -> {
@@ -312,8 +316,11 @@ public class HomeScene extends Home implements ShowScene {
                     bottomSide.getChildren().add(vNoneStock);
                 } else {
                     Button btnBeli = new Button("Beli");
+                    btnBeli.getStyleClass().add("btn-beli");
+
                     btnBeli.setMaxWidth(80);
                     Button btnBatal = new Button("Batal");
+                    btnBatal.getStyleClass().add("btn-beli");
                     btnBatal.setMaxWidth(80);
 
                     TextField jumlahStok = new TextField();
@@ -369,6 +376,7 @@ public class HomeScene extends Home implements ShowScene {
                             noneStock.setTextAlignment(TextAlignment.CENTER);
 
                             Button back = new Button("Kembali ke daftar buku");
+                            back.getStyleClass().add("btn-beli");
                             back.setAlignment(Pos.CENTER);
 
                             back.setOnAction(r -> {
@@ -396,7 +404,9 @@ public class HomeScene extends Home implements ShowScene {
                             vInp.setAlignment(Pos.CENTER);
             
                             Button conf = new Button("Konfirmasi");
+                            conf.getStyleClass().add("btn-beli");
                             Button cancel = new Button("Batal");
+                            cancel.getStyleClass().add("btn-beli");
                             HBox hLayout = new HBox(cancel, conf);
                             hLayout.setSpacing(10);
                             hLayout.setAlignment(Pos.CENTER);
@@ -453,6 +463,7 @@ public class HomeScene extends Home implements ShowScene {
                                         tTrans.setTextAlignment(TextAlignment.CENTER);
                 
                                         Button toHome = new Button("Kembali ke Daftar Buku");
+                                        toHome.getStyleClass().add("btn-beli");
                                         toHome.setAlignment(Pos.CENTER);
                 
                                         listCustomer.clear();
@@ -497,6 +508,7 @@ public class HomeScene extends Home implements ShowScene {
                                         });
                 
                                         Button toHome = new Button("Kembali ke Daftar Buku");
+                                        toHome.getStyleClass().add("btn-beli");
                                         toHome.setAlignment(Pos.CENTER);
 
                                         toHome.setOnAction(w -> {
@@ -597,6 +609,8 @@ public class HomeScene extends Home implements ShowScene {
         Text infoSaldo = new Text("Saldo di Rekening Anda sebanyak Rp" + listCustomers.get(0).getUang());
 
         Button btnKlikTambah = new Button("Klik untuk Tambah Saldo");
+        btnKlikTambah.getStyleClass().add("btn-beli");
+
         btnKlikTambah.setPrefWidth(400);
 
         btnKlikTambah.setOnAction(v -> {
@@ -605,9 +619,11 @@ public class HomeScene extends Home implements ShowScene {
             jumlahSaldoTambah.setMaxWidth(400);
 
             Button btnTambah = new Button("Tambah");
+            btnTambah.getStyleClass().add("btn-beli");
             btnTambah.setMaxWidth(80);
 
             Button btnBatal = new Button("Batal");
+            btnBatal.getStyleClass().add("btn-beli");
             btnBatal.setMaxWidth(80);
 
             HBox hLayout = new HBox(btnBatal, btnTambah);

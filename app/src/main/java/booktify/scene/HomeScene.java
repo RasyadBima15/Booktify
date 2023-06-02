@@ -125,7 +125,7 @@ public class HomeScene extends Home implements ShowScene {
         CustomerDao custDao = new CustomerDao();
         listCustomer.addAll(custDao.get(LoginScene.username));
 
-        ImageView img = new ImageView("/images/tcbook.png");
+        ImageView img = new ImageView("/images/buku.jpg");
         img.setFitHeight(480 - 65);
         img.setFitWidth(640);
         StackPane stp1 = new StackPane(img, vLayout);
@@ -141,6 +141,7 @@ public class HomeScene extends Home implements ShowScene {
 
         VBox Indd = new VBox(Ind);
         Indd.setAlignment(Pos.CENTER);
+        Indd.getStyleClass().add("bInd");
 
         ImageView waLogo = new ImageView("/images/WA.png");
         waLogo.setFitHeight(15);

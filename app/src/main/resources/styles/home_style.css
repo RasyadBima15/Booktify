@@ -1,9 +1,12 @@
 .navbar {
-    -fx-background-color: #60b7ed;
+    -fx-background-color: #FAF0E6;
 }
 
+.bInd{
+-fx-background-color: rgba(248, 248, 255, 0.5);
+}
 .barbar{
-    -fx-background-color: #60b7ed;
+    -fx-background-color: #FAF0E6;
 }
 
 .menu-active{

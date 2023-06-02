@@ -125,7 +125,9 @@ public class HomeScene extends Home implements ShowScene {
         bottomSide.getChildren().clear();
         VBox vLayout = new VBox();
         List<Customer> listCustomer = new ArrayList<>();
-        Text tHome = new Text("Selamat Datang di Booktify,");
+        Text tHome = new Text("ToKuFarma Selamat Datang di Booktify,");
+        tHome.setFont(Font.font(33));
+        tHome.setStyle("-fx-font-weight: bold;");
         CustomerDao custDao = new CustomerDao();
         listCustomer.addAll(custDao.get(LoginScene.username));
 
@@ -136,10 +138,16 @@ public class HomeScene extends Home implements ShowScene {
         
         Text tHomeUser = new Text(listCustomer.get(0).getUsername());
         tHomeUser.setFont(Font.font("Britannic", 30));
+<<<<<<< HEAD
+        tHomeUser.setStyle("-fx-font-weight: bold;");
+
+        
+=======
         tHomeUser.setFill(Color.WHITE);
 
         tHome.setFont(Font.font("Britannic", 30));
         tHome.setFill(Color.WHITE);
+>>>>>>> 76f651816e7eea4bbf49aebe2ce31818691b4ca5
         VBox vContent = new VBox(tHome, tHomeUser);
 
         Text Ind = new Text("Toko buku online terbesar, terlengkap dan terpercaya di Indonesia");

@@ -60,11 +60,12 @@ public class CustomerDao {
             stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery("SELECT * FROM customers WHERE username = '" + username + "'");
             while (rs.next()) {
+                int id = rs.getInt("id");
                 String name = rs.getString("username");
                 String password = rs.getString("password");
                 int uang = rs.getInt("uang");
                 int token = rs.getInt("token");
-                listBooks.add(new Customer(name, password, uang, token));
+                listBooks.add(new Customer(id, name, password, uang, token));
             }
             return listBooks;
         } catch (SQLException e) {

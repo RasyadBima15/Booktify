@@ -37,50 +37,49 @@ public class BookDao {
             e.printStackTrace();
         }
     }
-
-    public List<Books> get(String category, String nameBook) throws SQLException {
-        try {
-            List<Books> listBooks = new ArrayList<>();
-            stmt = conn.createStatement();
-            ResultSet rs;
-            if (category == null){
-                rs = stmt.executeQuery("SELECT * FROM books WHERE nama = " + nameBook);
-            } else {
-                rs = stmt.executeQuery("SELECT * FROM books WHERE kategori = " + category + " AND nama = " + nameBook);
-            }
-            while (rs.next()) {
-                int id = rs.getInt("id");
-                String name = rs.getString("nama");
-                String penulis = rs.getString("penulis");
-                String kategori = rs.getString("kategori");
-                int harga = rs.getInt("harga");
-                int stock = rs.getInt("stock");
-                listBooks.add(new Books(id, name, penulis, kategori, harga, stock));
-            }
-            return listBooks;
-        } catch (SQLException e) {
-            throw new SQLException();
-        }
-    }
-    public List<Books> get(String category) throws SQLException {
-        try {
-            List<Books> listBooks = new ArrayList<>();
-            stmt = conn.createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT nama, penulis, kategori, harga, stock FROM books WHERE kategori = " + category);
-            while (rs.next()) {
-                int id = rs.getInt("id");
-                String name = rs.getString("nama");
-                String penulis = rs.getString("penulis");
-                String kategori = rs.getString("kategori");
-                int harga = rs.getInt("harga");
-                int stock = rs.getInt("stock");
-                listBooks.add(new Books(id,name, penulis, kategori, harga, stock));
-            }
-            return listBooks;
-        } catch (SQLException e) {
-            throw new SQLException();
-        }
-    }
+    // public List<Books> get(String category, String nameBook) throws SQLException {
+    //     try {
+    //         List<Books> listBooks = new ArrayList<>();
+    //         stmt = conn.createStatement();
+    //         ResultSet rs;
+    //         if (category == null){
+    //             rs = stmt.executeQuery("SELECT * FROM books WHERE nama = " + nameBook);
+    //         } else {
+    //             rs = stmt.executeQuery("SELECT * FROM books WHERE kategori = " + category + " AND nama = " + nameBook);
+    //         }
+    //         while (rs.next()) {
+    //             int id = rs.getInt("id");
+    //             String name = rs.getString("nama");
+    //             String penulis = rs.getString("penulis");
+    //             String kategori = rs.getString("kategori");
+    //             int harga = rs.getInt("harga");
+    //             int stock = rs.getInt("stock");
+    //             listBooks.add(new Books(id, name, penulis, kategori, harga, stock));
+    //         }
+    //         return listBooks;
+    //     } catch (SQLException e) {
+    //         throw new SQLException();
+    //     }
+    // }
+    // public List<Books> get(String category) throws SQLException {
+    //     try {
+    //         List<Books> listBooks = new ArrayList<>();
+    //         stmt = conn.createStatement();
+    //         ResultSet rs = stmt.executeQuery("SELECT nama, penulis, kategori, harga, stock FROM books WHERE kategori = " + category);
+    //         while (rs.next()) {
+    //             int id = rs.getInt("id");
+    //             String name = rs.getString("nama");
+    //             String penulis = rs.getString("penulis");
+    //             String kategori = rs.getString("kategori");
+    //             int harga = rs.getInt("harga");
+    //             int stock = rs.getInt("stock");
+    //             listBooks.add(new Books(id,name, penulis, kategori, harga, stock));
+    //         }
+    //         return listBooks;
+    //     } catch (SQLException e) {
+    //         throw new SQLException();
+    //     }
+    // }
     public List<Books> get() throws SQLException {
         try {
             List<Books> listBooks = new ArrayList<>();
@@ -103,9 +102,6 @@ public class BookDao {
     public void insert(List<Books> listBook) {
         try {
             stmt = conn.createStatement();
-            // DatabaseMetaData meta = conn.getMetaData();
-            // ResultSet rs = meta.getTables(null, null, "books", null);
-            // boolean tableExist = rs.next();
             for (int index = 0; index < listBook.size(); index++){
                 String sql = String.format("""
                     INSERT INTO books(id, nama, penulis, kategori, harga, stock) 
@@ -123,11 +119,11 @@ public class BookDao {
             e.printStackTrace();
         }
     }
-    public void delete(int bookId) {
-        try {
-            stmt.executeUpdate("DELETE from books WHERE id = " + bookId);
-        } catch (SQLException e) {
-            e.printStackTrace();
+    public void buyBook(int BookId, int stock, int stockBuy, int uang, int harga, String username) throws SQLException{
+        if (stock - stockBuy >= 0 && uang - (stockBuy * harga) >= 0){
+            stmt = conn.createStatement();
+            stmt.executeUpdate("UPDATE books SET stock = '" + (stock - stockBuy) + "' WHERE id = '" + BookId + "'");
+            stmt.executeUpdate("UPDATE customers SET uang = '" + (uang - (stockBuy * harga)) + "' WHERE username = '" + username + "'");
         }
     }
 }

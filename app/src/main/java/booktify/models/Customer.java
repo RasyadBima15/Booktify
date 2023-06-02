@@ -1,7 +1,7 @@
 package booktify.models;
 
 public class Customer {
-    // private int id;
+    private int id;
     private String username;
     private String password;
     private int uang;
@@ -14,18 +14,30 @@ public class Customer {
         this.token = token;
     }
     public Customer(String username, String password, int uang, int token) {
-        // this.id = id;
         this.username = username;
         this.password = password;
         this.uang = uang;
         this.token = token;
     }
-    // public int getid() {
-    //     return id;
-    // }
-    // public void setid(int id) {
-    //     this.id = id;
-    // }
+    public Customer(int id, String username, String password, int uang, int token) {
+        this.id = id;
+        this.username = username;
+        this.password = password;
+        this.uang = uang;
+        this.token = token;
+    }
+    public Customer(int id, String password, int uang, int token) {
+        this.id = id;
+        this.password = password;
+        this.uang = uang;
+        this.token = token;
+    }
+    public int getid() {
+        return id;
+    }
+    public void setid(int id) {
+        this.id = id;
+    }
     public String getUsername() {
         return username;
     }

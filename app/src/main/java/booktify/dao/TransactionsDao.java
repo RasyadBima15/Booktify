@@ -24,9 +24,12 @@ public class TransactionsDao {
             if (!rs.next()){
                 stmt = conn.createStatement();
                 String sql = "CREATE TABLE transactions " +
-                    "(id INTEGER PRIMARY KEY, " +
+                    "(id INTEGER PRIMARY KEY AUTOINCREMENT, " +
                     " id_book INTEGER NOT NULL, " +
+                    " customer_id INTEGER NOT NULL, " +
                     " tanggal VARCHAR(255) NOT NULL, " +
+                    " stock_purchased INTEGER NOT NULL, " +
+                    " FOREIGN KEY (customer_id) REFERENCES customers(id), " +
                     " FOREIGN KEY (id_book) REFERENCES books(id))";
                 stmt.executeUpdate(sql);
             }
@@ -39,27 +42,30 @@ public class TransactionsDao {
             stmt = conn.createStatement();
             for (int index = 0; index < listTransaction.size(); index++){
                 String sql = String.format("""
-                    INSERT INTO transactions(id, id_book, tanggal) 
-                    VALUES('%d', '%d', '%s')
+                    INSERT INTO transactions(id_book, customer_id, tanggal, stock_purchased) 
+                    VALUES('%d', '%d', '%s', '%d')
                 """,
-                index + 1,
                 listTransaction.get(index).getid_Book(),
-                listTransaction.get(index).getDate());
+                listTransaction.get(index).getId_customer(),
+                listTransaction.get(index).getDate(),
+                listTransaction.get(index).getStockPurchased());
                 stmt.executeUpdate(sql);
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
-    public List<Transaction> get(int BookId) throws SQLException {
+    public List<Transaction> get(int customerId) throws SQLException {
         try {
             List<Transaction> listBooks = new ArrayList<>();
             stmt = conn.createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT * from transactions WHERE id_book = " + BookId);
+            ResultSet rs = stmt.executeQuery("SELECT * from transactions WHERE id_book = '" + customerId + "'");
             while (rs.next()) {
                 int bookId = rs.getInt("id_book");
+                int customer_Id = rs.getInt("cutomer_id");
                 String date = rs.getString("tanggal");
-                listBooks.add(new Transaction(bookId, date));
+                int stockPurchased = rs.getInt("stock_purchased");
+                listBooks.add(new Transaction(bookId, customer_Id, date, stockPurchased));
             }
             return listBooks;
         } catch (SQLException e) {
@@ -73,8 +79,10 @@ public class TransactionsDao {
             ResultSet rs = stmt.executeQuery("SELECT * FROM transactions");
             while (rs.next()) {
                 int bookId = rs.getInt("id_book");
+                int customerId = rs.getInt("customer_id");
                 String date = rs.getString("tanggal");
-                listBooks.add(new Transaction(bookId, date));
+                int stockPurchased = rs.getInt("stock_purchased");
+                listBooks.add(new Transaction(bookId, customerId, date, stockPurchased));
             }
             return listBooks;
         } catch (SQLException e) {

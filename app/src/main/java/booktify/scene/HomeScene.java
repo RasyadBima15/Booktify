@@ -74,15 +74,19 @@ public class HomeScene extends Home implements ShowScene {
         hNavbar.setPrefSize(width, height);
         hNavbar.setMaxSize(width, height);
 
-        ImageView ivLogo = new ImageView("/images/logoBooktify.jpg");
-        ivLogo.setFitHeight(65);
-        ivLogo.setFitWidth(70);
+        ImageView ivLogo = new ImageView("/images/bookt.png");
+        ivLogo.setFitHeight(50);
+        ivLogo.setFitWidth(40);
+        StackPane sp = new StackPane();
+        sp.setPadding(new Insets(0,0,0,30));
+        sp.getChildren().add(ivLogo);
 
-        HBox hboxLogo = new HBox(ivLogo);
+        HBox hboxLogo = new HBox(sp);
         hboxLogo.setAlignment(Pos.TOP_LEFT);
 
         Region spacerNavbar = new Region();
-        spacerNavbar.setPrefWidth(83);
+
+        spacerNavbar.setPrefWidth(50);
 
         hNavbar.getChildren().addAll(hboxLogo, spacerNavbar);
         hNavbar.getChildren().addAll(generateMenuItem());

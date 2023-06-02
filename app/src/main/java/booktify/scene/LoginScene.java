@@ -6,6 +6,8 @@ import java.util.List;
 
 import org.mindrot.jbcrypt.BCrypt;
 
+import booktify.abstract_class.Login;
+import booktify.abstract_class.ShowScene;
 import booktify.dao.CustomerDao;
 import booktify.models.Customer;
 import javafx.geometry.Pos;
@@ -23,8 +25,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
-public class LoginScene {
-    public static String username;
+public class LoginScene extends Login implements ShowScene {
     private Stage stage;
 
     public LoginScene(Stage stage) {

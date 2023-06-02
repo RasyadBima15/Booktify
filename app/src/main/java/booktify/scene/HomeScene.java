@@ -9,6 +9,8 @@ import java.util.function.UnaryOperator;
 
 import org.mindrot.jbcrypt.BCrypt;
 
+import booktify.abstract_class.Home;
+import booktify.abstract_class.ShowScene;
 import booktify.dao.BookDao;
 import booktify.dao.CustomerDao;
 import booktify.dao.TransactionsDao;
@@ -21,7 +23,9 @@ import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
@@ -29,6 +33,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TextFormatter;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
@@ -42,11 +47,8 @@ import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 import javafx.util.converter.IntegerStringConverter;
 
-public class HomeScene {
+public class HomeScene extends Home implements ShowScene {
     private Stage stage;
-    private VBox bottomSide;
-    private int index;
-    private HBox[] listHboxMenu = new HBox[5];
 
     public HomeScene(Stage stage) {
         this.stage = stage;
@@ -192,7 +194,9 @@ public class HomeScene {
         for (int i = 0; i < listHboxMenu.length; i++){
             int index = i;
             listHboxMenu[i].setOnMouseClicked(v -> {
-                changeMenuStatus(listHboxMenu[index], true);
+                if (index != 4){
+                    changeMenuStatus(listHboxMenu[index], true);
+                }
                 try {
                     changeMenu(index + 1);
                 } catch (SQLException e) {
@@ -707,7 +711,16 @@ public class HomeScene {
 
     }
     private void showLogout() {
-        LoginScene loginScene = new LoginScene(stage);
-        stage.setScene(loginScene.show());
+        for (int i = 0; i < listHboxMenu.length; i++){
+            changeMenuStatus(listHboxMenu[i], false);
+        }
+        Alert alert = new Alert(AlertType.CONFIRMATION);
+        alert.setTitle("Logout");
+        alert.setContentText("Apakah anda yakin keluar?");
+
+        if (alert.showAndWait().get() == ButtonType.OK) {
+            LoginScene loginScene = new LoginScene(stage);
+            stage.setScene(loginScene.show());
+        }
     }
 }

@@ -20,10 +20,11 @@ import java.util.regex.Pattern;
 
 import org.mindrot.jbcrypt.BCrypt;
 
+import booktify.abstract_class.ShowScene;
 import booktify.dao.CustomerDao;
 import booktify.models.Customer;
 
-public class RegisScene {
+public class RegisScene implements ShowScene{
     private Stage stage;
 
     public RegisScene(Stage stage){
@@ -86,7 +87,7 @@ public class RegisScene {
                     //tambahkan enkripsi password user biar aman
                     String hashedPassword = BCrypt.hashpw(password, BCrypt.gensalt());
     
-                    Customer customer = new Customer(username, hashedPassword, 200000, 1);
+                    Customer customer = new Customer(username, hashedPassword, 0, 1);
                     listCustomer.add(customer);
                     custDao.insert(listCustomer);
     

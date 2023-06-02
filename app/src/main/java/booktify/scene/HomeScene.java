@@ -41,6 +41,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
@@ -131,12 +132,15 @@ public class HomeScene extends Home implements ShowScene {
         
         Text tHomeUser = new Text(listCustomer.get(0).getUsername());
         tHomeUser.setFont(Font.font("Britannic", 30));
+        tHomeUser.setFill(Color.WHITE);
 
         tHome.setFont(Font.font("Britannic", 30));
+        tHome.setFill(Color.WHITE);
         VBox vContent = new VBox(tHome, tHomeUser);
 
         Text Ind = new Text("Toko buku online terbesar, terlengkap dan terpercaya di Indonesia");
         Ind.setFont(Font.font("Britannic", 15));
+        Ind.setFill(Color.WHITE);
 
         VBox Indd = new VBox(Ind);
         Indd.setAlignment(Pos.CENTER);
@@ -169,7 +173,6 @@ public class HomeScene extends Home implements ShowScene {
         tcc.getStyleClass().add("barbar");
 
         VBox bawah = new VBox(Indd, tcc);
-        bawah.setSpacing(5);
 
         vContent.setPrefHeight(480 - 65 - tcc.getHeight());
         vContent.setAlignment(Pos.CENTER);

@@ -144,7 +144,6 @@ public class HomeScene extends Home implements ShowScene {
 
         Text Ind = new Text("Toko buku online terbesar, terlengkap dan terpercaya di Indonesia");
         Ind.setFont(Font.font("Britannic", 15));
-        Ind.setFill(Color.WHITE);
 
         VBox Indd = new VBox(Ind);
         Indd.setAlignment(Pos.CENTER);

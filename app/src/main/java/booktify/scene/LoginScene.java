@@ -40,9 +40,9 @@ public class LoginScene extends Login implements ShowScene {
         Scene scene = new Scene(spLayout, 640, 480);
         scene.getStylesheets().add(getClass().getResource("/styles/style.css").toExternalForm());
 
-        ImageView ivLogo = new ImageView("/images/logoBooktify.jpg");
-        ivLogo.setFitHeight(100);
-        ivLogo.setFitWidth(200);
+        ImageView ivLogo = new ImageView("/images/bookt.png");
+        ivLogo.setFitHeight(125);
+        ivLogo.setFitWidth(100);
 
         Text textBrand = new Text("Booktify");
         textBrand.setFont(Font.font("Britannic", 25));

@@ -10,18 +10,21 @@ import booktify.abstract_class.Login;
 import booktify.abstract_class.ShowScene;
 import booktify.dao.CustomerDao;
 import booktify.models.Customer;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
+import javafx.scene.control.SplitMenuButton;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
@@ -35,21 +38,24 @@ public class LoginScene extends Login implements ShowScene {
     public Scene show() {
         StackPane spLayout = new StackPane();
         Scene scene = new Scene(spLayout, 640, 480);
-        // scene.getStylesheets().add(getClass().getResource("/styles/home_style.css").toExternalForm());
+        scene.getStylesheets().add(getClass().getResource("/styles/style.css").toExternalForm());
 
         ImageView ivLogo = new ImageView("/images/logoBooktify.jpg");
         ivLogo.setFitHeight(100);
         ivLogo.setFitWidth(200);
 
         Text textBrand = new Text("Booktify");
+        textBrand.setFont(Font.font("Britannic", 25));
 
         Label lbDesc = new Label("Aplikasi belanja buku yang mudah dan efisien bagi pengguna");
-        lbDesc.getStyleClass().add("desc-text");
+        lbDesc.setStyle("-fx-font-size: 14px;");
 
-        Region space = new Region();
-        space.setPrefHeight(10);
+        VBox vUpper = new VBox(ivLogo, textBrand, lbDesc);
+        vUpper.setAlignment(Pos.CENTER);
+        vUpper.setSpacing(3);
 
         Text textLogin = new Text("Login");
+        textLogin.setFont(Font.font("Britannic", 25));
 
         TextField tfUsername = new TextField();
         tfUsername.setMaxWidth(380);
@@ -70,6 +76,21 @@ public class LoginScene extends Login implements ShowScene {
         FlowPane flwPane = new FlowPane();
         flwPane.getChildren().addAll(textRegis, regis);
         flwPane.setAlignment(Pos.CENTER);
+
+        VBox vBottom1 = new VBox(textLogin, tfUsername, tfPass);
+        vBottom1.setAlignment(Pos.CENTER);
+        vBottom1.setSpacing(10);
+
+        VBox vBottom2 = new VBox(btnLogin, flwPane);
+        vBottom2.setAlignment(Pos.CENTER);
+        vBottom2.setSpacing(5);
+
+        VBox vLayout = new VBox(vUpper, vBottom1, vBottom2);
+        vLayout.setSpacing(10);
+        spLayout.getChildren().add(vLayout);
+        vLayout.setAlignment(Pos.CENTER);
+        vLayout.getStyleClass().add("login");
+        vLayout.setPadding(new Insets(0, 0, 60, 0));
 
         regis.setOnAction(v -> {
             RegisScene regisScene = new RegisScene(stage);
@@ -100,29 +121,28 @@ public class LoginScene extends Login implements ShowScene {
                     }
                 } else {
                     spLayout.getChildren().clear();
-                    VBox vLayout = new VBox(ivLogo, textBrand, lbDesc, space, textLogin, tfUsername, tfPass, lbLoginFailed, btnLogin, flwPane);
-                    vLayout.setSpacing(10);
-                    spLayout.getChildren().add(vLayout);
-                    vLayout.setAlignment(Pos.CENTER);
+                    VBox vLayout2 = new VBox(vUpper, vBottom1, lbLoginFailed, vBottom2);
+                    vLayout2.setSpacing(10);
+                    spLayout.getChildren().add(vLayout2);
+                    spLayout.getStyleClass().add("login");
+                    vLayout2.setAlignment(Pos.CENTER);
+                    vLayout2.setPadding(new Insets(0, 0, 60, 0));
                     
                     lbLoginFailed.setText("Password tidak valid!");
                     
                 }
             } else {
                 spLayout.getChildren().clear();
-                VBox vLayout = new VBox(ivLogo, textBrand, lbDesc, space, textLogin, tfUsername, tfPass, lbLoginFailed, btnLogin, flwPane);
-                vLayout.setSpacing(10);
-                spLayout.getChildren().add(vLayout);
-                vLayout.setAlignment(Pos.CENTER);
+                VBox vLayout3 = new VBox(vUpper, vBottom1, lbLoginFailed, vBottom2);
+                vLayout3.setSpacing(10);
+                spLayout.getChildren().add(vLayout3);
+                spLayout.getStyleClass().add("login");
+                vLayout3.setAlignment(Pos.CENTER);
+                vLayout3.setPadding(new Insets(0, 0, 60, 0));
         
                 lbLoginFailed.setText("Username atau password tidak valid!");
             }
         });
-
-        VBox vLayout = new VBox(ivLogo, textBrand, lbDesc, space, textLogin, tfUsername, tfPass, btnLogin, flwPane);
-        vLayout.setSpacing(10);
-        spLayout.getChildren().add(vLayout);
-        vLayout.setAlignment(Pos.CENTER);
 
         stage.setScene(scene);
         return scene;

@@ -82,14 +82,10 @@ public class CustomerDao {
     }
     public boolean checkUsernameExist(String username) throws SQLException {
         boolean exist = false;
-        try {
-            stmt = conn.createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT * FROM customers WHERE username = '" + username + "'");
-            if (rs.next()){
-                exist = true;
-            }
-        } catch (SQLException e) {
-            throw new SQLException();
+        stmt = conn.createStatement();
+        ResultSet rs = stmt.executeQuery("SELECT * FROM customers WHERE username = '" + username + "'");
+        if (rs.next()){
+            exist = true;
         }
         return exist;
     }

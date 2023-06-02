@@ -1,5 +1,6 @@
 package booktify.scene;
 
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -9,6 +10,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
@@ -36,20 +38,23 @@ public class RegisScene implements ShowScene{
         Scene scene = new Scene(spLayout, 640, 480);
 
         Text createAccount = new Text("Buat Akun");
+        createAccount.setFont(Font.font("Britannic", 30));
 
         TextField tfUsername = new TextField();
-        tfUsername.setMaxWidth(380);
+        tfUsername.setMaxWidth(500);
         tfUsername.setMaxHeight(1000);
         tfUsername.setPromptText("Username");
-        Label lbStrongUsername = new Label("Username harus mengandung huruf, angka dan tidak mengandung simbol lain!");
+        Label lbStrongUsername = new Label("username harus mengandung huruf, angka dan tidak mengandung simbol lain");
+        lbStrongUsername.setPadding(new Insets(0, 67, 0, 0));
         
         PasswordField tfPassword = new PasswordField();
-        tfPassword.setMaxWidth(380);
+        tfPassword.setMaxWidth(500);
         tfPassword.setMaxHeight(1000);
         tfPassword.setPromptText("Password");
 
-        Label lbStrongPassword = new Label("Password harus memiliki setidaknya 8 karakter, termasuk huruf besar, huruf kecil, dan angka!");
-        Label lbUsernameExist = new Label("Username sudah digunakan! Mohon mencoba menggunakan username baru!");
+        Label lbStrongPassword = new Label("password harus memiliki setidaknya 8 karakter, termasuk huruf besar, huruf kecil, dan angka");
+        Label lbUsernameExist = new Label("username sudah digunakan! Mohon mencoba menggunakan username baru");
+        lbUsernameExist.setPadding(new Insets(0, 75, 0, 0));
 
         Button btnRegis = new Button("Daftar");
         Button btnBack = new Button("Kembali");

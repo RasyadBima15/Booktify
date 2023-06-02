@@ -57,7 +57,7 @@ public class HomeScene extends Home implements ShowScene {
     public Scene show() throws SQLException {
         VBox vPage = new VBox();
         Scene scene = new Scene(vPage, 640, 480);
-        scene.getStylesheets().add(getClass().getResource("/styles/home_style.css").toExternalForm());
+        scene.getStylesheets().add(getClass().getResource("/styles/style.css").toExternalForm());
 
         HBox upperSide = generateUpperSide(scene.getWidth(), 65);
         bottomSide = generateBottomSide(scene.getWidth(), scene.getHeight() - 65);
@@ -93,7 +93,6 @@ public class HomeScene extends Home implements ShowScene {
         VBox hBoxLayout = new VBox();
         hBoxLayout.setPrefSize(width, height);
         hBoxLayout.setMaxSize(width, height);
-        // hBoxLayout.setPadding(new Insets(24));
         return hBoxLayout;
     }
     private void changeMenu(int indexMenu) throws SQLException {
@@ -176,6 +175,7 @@ public class HomeScene extends Home implements ShowScene {
 
         vLayout.setAlignment(Pos.CENTER);
         vLayout.getChildren().addAll(vContent, bawah);
+        bottomSide.setPadding(new Insets(0));
         bottomSide.getChildren().add(stp1);
         bottomSide.setSpacing(140);
     }
@@ -249,6 +249,7 @@ public class HomeScene extends Home implements ShowScene {
         tableBooks.setItems(listBooks);
 
         Button btnBuy = new Button("Beli");
+        btnBuy.setPrefWidth(200);
         
         btnBuy.setOnAction(v -> {
             bottomSide.getChildren().clear();
@@ -315,7 +316,7 @@ public class HomeScene extends Home implements ShowScene {
                         }
                         return null;
                     };
-                    TextFormatter<Integer> textFormatter = new TextFormatter<>(new IntegerStringConverter(), 0, integerFilter);
+                    TextFormatter<Integer> textFormatter = new TextFormatter<>(new IntegerStringConverter(), null, integerFilter);
                     jumlahStok.setTextFormatter(textFormatter);
 
                     HBox ConfirmBtn = new HBox(btnBatal, btnBeli);
@@ -516,7 +517,9 @@ public class HomeScene extends Home implements ShowScene {
                 }
             }
         });
+        bottomSide.setPadding(new Insets(7));
         bottomSide.getChildren().addAll(tableBooks, btnBuy);
+        bottomSide.setSpacing(10);
         bottomSide.setAlignment(Pos.CENTER);
     }
 
@@ -570,7 +573,8 @@ public class HomeScene extends Home implements ShowScene {
         }
 
         tableCombined.setItems(combinedDataList);
-
+        
+        bottomSide.setPadding(new Insets(7));
         bottomSide.getChildren().addAll(tableCombined);
     }
 
@@ -707,6 +711,7 @@ public class HomeScene extends Home implements ShowScene {
         vLayout.setSpacing(10);
         vLayout.setPrefHeight(480 - 65);
         vLayout.setAlignment(Pos.CENTER);
+        bottomSide.setPadding(new Insets(0));
         bottomSide.getChildren().add(vLayout);
 
     }

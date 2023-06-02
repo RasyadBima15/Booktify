@@ -9,3 +9,7 @@
 .menu-active{
     -fx-background-color: #ffffff;
 }
+
+.login {
+    -fx-background-color: #ffffff
+}

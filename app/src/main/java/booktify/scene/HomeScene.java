@@ -196,6 +196,7 @@ public class HomeScene extends Home implements ShowScene {
             Label labelMenu = new Label(listTitle[i]);
             listHboxMenu[i] = new HBox(labelMenu);
             listHboxMenu[i].setAlignment(Pos.CENTER);
+            listHboxMenu[i].setStyle("-fx-font-weight: bold;");
             listHboxMenu[i].setPadding(new Insets(12, 20, 12, 20));
             listHboxMenu[i].setSpacing(4);
             changeMenuStatus(listHboxMenu[i], i == 0 ? true : false);
@@ -265,11 +266,15 @@ public class HomeScene extends Home implements ShowScene {
         btnBuy.setOnAction(v -> {
             bottomSide.getChildren().clear();
             Text transaksi = new Text("Input Jumlah Stok yang ingin dibeli");
+            transaksi.setFont(Font.font("Britannic", 14));
+            transaksi.setStyle("-fx-font-weight: bold;");
 
             index = tableBooks.getSelectionModel().getSelectedIndex();
             if (index == -1 ) {
                 bottomSide.getChildren().clear();
                 Text noneStock = new Text("Sebelum melakukan pembelian, mohon pilih terlebih dahulu bukunya dari daftar yang tersedia. Terima kasih!");
+                noneStock.setFont(Font.font("Britannic", 12));
+                noneStock.setStyle("-fx-font-weight: bold;");
                 noneStock.setTextAlignment(TextAlignment.CENTER);
 
                 Button back = new Button("Kembali ke daftar buku");
@@ -294,6 +299,8 @@ public class HomeScene extends Home implements ShowScene {
                 if (remainStock == 0){
                     bottomSide.getChildren().clear();
                     Text noneStock = new Text("Maaf, stok buku ini telah habis. Silakan cek kembali nanti atau jelajahi buku-buku lain yang tersedia");
+                    noneStock.setFont(Font.font("Britannic", 13));
+                    noneStock.setStyle("-fx-font-weight: bold;");
                     noneStock.setTextAlignment(TextAlignment.CENTER);
 
                     Button back = new Button("Kembali ke daftar buku");
@@ -364,6 +371,8 @@ public class HomeScene extends Home implements ShowScene {
                         if (Integer.parseInt(jumlahStok.getText()) == 0){
                             bottomSide.getChildren().clear();
                             Text alert = new Text("Masukkan jumlah stock dengan benar");
+                            alert.setFont(Font.font("Britannic", 14));
+                            alert.setStyle("-fx-font-weight: bold;");
                             alert.setTextAlignment(TextAlignment.CENTER);
 
                             VBox vLayout1 = new VBox(transaksi, vLayoutTextField, alert, ConfirmBtn);
@@ -373,6 +382,8 @@ public class HomeScene extends Home implements ShowScene {
                         } else if (Integer.parseInt(jumlahStok.getText()) > remainStock) {
                             bottomSide.getChildren().clear();
                             Text noneStock = new Text("Mohon maaf, jumlah barang yang ingin Anda beli melebihi persediaan stok yang tersedia");
+                            noneStock.setFont(Font.font("Britannic", 14));
+                            noneStock.setStyle("-fx-font-weight: bold;");
                             noneStock.setTextAlignment(TextAlignment.CENTER);
 
                             Button back = new Button("Kembali ke daftar buku");
@@ -393,6 +404,8 @@ public class HomeScene extends Home implements ShowScene {
                             bottomSide.getChildren().add(vNoneStock2);
                         } else {
                             Text inpPs = new Text("Masukkan Password");
+                            inpPs.setFont(Font.font("Britannic", 14));
+                            inpPs.setStyle("-fx-font-weight: bold;");
                             inpPs.setTextAlignment(TextAlignment.CENTER);
             
                             PasswordField inpPass = new PasswordField();
@@ -412,6 +425,8 @@ public class HomeScene extends Home implements ShowScene {
                             hLayout.setAlignment(Pos.CENTER);
             
                             Text passWrong = new Text("Password yang anda masukkan salah");
+                            passWrong.setFont(Font.font("Britannic", 14));
+                            passWrong.setStyle("-fx-font-weight: bold;");
                             passWrong.setTextAlignment(TextAlignment.CENTER);
             
                             VBox vLayoutPass = new VBox(vInp, hLayout);
@@ -460,6 +475,8 @@ public class HomeScene extends Home implements ShowScene {
                                         transactionsDao.insert(listTransactions);
                 
                                         Text tTrans = new Text("Transaksi Berhasil! Terima kasih telah membeli buku di mini marketplace kami!");
+                                        tTrans.setFont(Font.font("Britannic", 14));
+                                        tTrans.setStyle("-fx-font-weight: bold;");
                                         tTrans.setTextAlignment(TextAlignment.CENTER);
                 
                                         Button toHome = new Button("Kembali ke Daftar Buku");
@@ -487,14 +504,19 @@ public class HomeScene extends Home implements ShowScene {
                                     } else {
                                         bottomSide.getChildren().clear();
                                         Text tTrans = new Text("Transaksi Gagal! Saldo anda tidak cukup!");
+                                        tTrans.setFont(Font.font("Britannic", 14));
+                                        tTrans.setStyle("-fx-font-weight: bold;");
                                         tTrans.setTextAlignment(TextAlignment.CENTER);
 
-                                        Text text1 = new Text("Ingin menambah saldo?");
+                                        Text text1 = new Text("Ingin menambah saldo? ");
+                                        text1.setFont(Font.font("Britannic", 14));
+                                        text1.setStyle("-fx-font-weight: bold;");
                                         Hyperlink addSaldo = new Hyperlink("klik disini");
+                                        addSaldo.setFont(Font.font("Britannic", 14));
+                                        addSaldo.setStyle("-fx-font-weight: bold;");
 
-                                        FlowPane flwPane = new FlowPane();
-                                        flwPane.getChildren().addAll(text1, addSaldo);
-                                        flwPane.setAlignment(Pos.CENTER);
+                                        HBox hBoxLayout = new HBox(text1, addSaldo);
+                                        hBoxLayout.setAlignment(Pos.CENTER);
 
                                         addSaldo.setOnAction(p -> {
                                             changeMenuStatus(listHboxMenu[1], false);
@@ -520,7 +542,7 @@ public class HomeScene extends Home implements ShowScene {
                                             }
                                         });
 
-                                        VBox vBox2 = new VBox(tTrans, flwPane, toHome);
+                                        VBox vBox2 = new VBox(tTrans, hBoxLayout, toHome);
                                         vBox2.setSpacing(10);
                                         vBox2.setAlignment(Pos.CENTER);
                 
@@ -609,6 +631,8 @@ public class HomeScene extends Home implements ShowScene {
         listCustomers.addAll(custDao.get(LoginScene.username));
 
         Text infoSaldo = new Text("Saldo di Rekening Anda sebanyak Rp" + listCustomers.get(0).getUang());
+        infoSaldo.setFont(Font.font("Britannic", 14));
+        infoSaldo.setStyle("-fx-font-weight: bold;");
 
         Button btnKlikTambah = new Button("Klik untuk Tambah Saldo");
         btnKlikTambah.getStyleClass().add("btn-beli");
@@ -633,6 +657,8 @@ public class HomeScene extends Home implements ShowScene {
             hLayout.setAlignment(Pos.CENTER);
 
             Text voucher = new Text("Masukkan Voucher Anda");
+            voucher.setFont(Font.font("Britannic", 14));
+            voucher.setStyle("-fx-font-weight: bold;");
             voucher.setTextAlignment(TextAlignment.CENTER);
 
             VBox vLayout = new VBox(infoSaldo, btnKlikTambah, voucher, jumlahSaldoTambah);
@@ -675,12 +701,16 @@ public class HomeScene extends Home implements ShowScene {
                             listCustomers.addAll(custDao.get(username));
 
                             Text newinfoSaldo = new Text("Saldo di Rekening Anda sebanyak Rp" + listCustomers.get(0).getUang());
+                            newinfoSaldo.setFont(Font.font("Britannic", 14));
+                            newinfoSaldo.setStyle("-fx-font-weight: bold;");
 
                             HBox newhLayout = new HBox(btnBatal, btnTambah);
                             newhLayout.setSpacing(5);
                             newhLayout.setAlignment(Pos.CENTER);
 
                             Text newvoucher = new Text("Masukkan Voucher Anda");
+                            newvoucher.setFont(Font.font("Britannic", 14));
+                            newvoucher.setStyle("-fx-font-weight: bold;");
                             newvoucher.setTextAlignment(TextAlignment.CENTER);
 
                             VBox newvLayout = new VBox(newinfoSaldo, btnKlikTambah, newvoucher, jumlahSaldoTambah);
@@ -689,9 +719,11 @@ public class HomeScene extends Home implements ShowScene {
 
                             if (id != 0){
                                 bottomSide.getChildren().clear();
-                                Text wrongToken = new Text("Saldo anda berhasil ditambahkan sebanyak Rp300000");
-                                wrongToken.setTextAlignment(TextAlignment.CENTER);
-                                VBox vLayoutAllWithCorrectToken = new VBox(newvLayout, wrongToken, newhLayout);
+                                Text correctToken = new Text("Saldo anda berhasil ditambahkan sebanyak Rp300000");
+                                correctToken.setFont(Font.font("Britannic", 14));
+                                correctToken.setStyle("-fx-font-weight: bold;");
+                                correctToken.setTextAlignment(TextAlignment.CENTER);
+                                VBox vLayoutAllWithCorrectToken = new VBox(newvLayout, correctToken, newhLayout);
                                 vLayoutAllWithCorrectToken.setPrefHeight(480 - 65);
                                 vLayoutAllWithCorrectToken.setSpacing(10);
                                 vLayoutAllWithCorrectToken.setAlignment(Pos.CENTER);
@@ -700,6 +732,8 @@ public class HomeScene extends Home implements ShowScene {
                             } else {
                                 bottomSide.getChildren().clear();
                                 Text wrongToken = new Text("Token anda sudah digunakan");
+                                wrongToken.setFont(Font.font("Britannic", 14));
+                                wrongToken.setStyle("-fx-font-weight: bold;");
                                 wrongToken.setTextAlignment(TextAlignment.CENTER);
                                 VBox vLayoutAllWithWrongToken = new VBox(newvLayout, wrongToken, newhLayout);
                                 vLayoutAllWithWrongToken.setPrefHeight(480 - 65);
@@ -716,11 +750,15 @@ public class HomeScene extends Home implements ShowScene {
                 } else {
                     bottomSide.getChildren().clear();
                     Text newinfoSaldo = new Text("Saldo di Rekening Anda sebanyak Rp" + listCustomers.get(0).getUang());
+                    newinfoSaldo.setFont(Font.font("Britannic", 14));
+                    newinfoSaldo.setStyle("-fx-font-weight: bold;");
                     HBox newhLayout = new HBox(btnBatal, btnTambah);
                     newhLayout.setSpacing(5);
                     newhLayout.setAlignment(Pos.CENTER);
 
                     Text newvoucher = new Text("Masukkan Voucher Anda");
+                    newvoucher.setFont(Font.font("Britannic", 14));
+                    newvoucher.setStyle("-fx-font-weight: bold;");
                     newvoucher.setTextAlignment(TextAlignment.CENTER);
 
                     VBox newvLayout = new VBox(newinfoSaldo, btnKlikTambah, newvoucher, jumlahSaldoTambah);
@@ -728,6 +766,8 @@ public class HomeScene extends Home implements ShowScene {
                     newvLayout.setAlignment(Pos.CENTER);
 
                     Text wrongToken = new Text("Token yang anda masukkan salah!");
+                    wrongToken.setFont(Font.font("Britannic", 14));
+                    wrongToken.setStyle("-fx-font-weight: bold;");
                     wrongToken.setTextAlignment(TextAlignment.CENTER);
                     VBox vLayoutAllWithWrongToken = new VBox(newvLayout, wrongToken, newhLayout);
                     vLayoutAllWithWrongToken.setSpacing(10);

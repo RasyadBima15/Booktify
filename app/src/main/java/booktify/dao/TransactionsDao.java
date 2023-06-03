@@ -7,17 +7,19 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+
+import booktify.abstract_class.DaoForTransactions;
 import booktify.models.Transaction;
 import booktify.utils.DatabaseConfig;
 
-public class TransactionsDao {
+public class TransactionsDao implements DaoForTransactions{
     private Connection conn;
     private Statement stmt;
     public TransactionsDao(){
         conn = DatabaseConfig.getConnection();
         setupTable();
     }
-    private void setupTable(){
+    public void setupTable(){
         try {
             DatabaseMetaData meta = conn.getMetaData();
             ResultSet rs = meta.getTables(null, null, "transactions", null);
@@ -53,23 +55,6 @@ public class TransactionsDao {
             }
         } catch (SQLException e) {
             e.printStackTrace();
-        }
-    }
-    public List<Transaction> get(int customerId) throws SQLException {
-        try {
-            List<Transaction> listBooks = new ArrayList<>();
-            stmt = conn.createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT * from transactions WHERE id_book = '" + customerId + "'");
-            while (rs.next()) {
-                int bookId = rs.getInt("id_book");
-                int customer_Id = rs.getInt("cutomer_id");
-                String date = rs.getString("tanggal");
-                int stockPurchased = rs.getInt("stock_purchased");
-                listBooks.add(new Transaction(bookId, customer_Id, date, stockPurchased));
-            }
-            return listBooks;
-        } catch (SQLException e) {
-            throw new SQLException();
         }
     }
     public List<Transaction> get() throws SQLException {

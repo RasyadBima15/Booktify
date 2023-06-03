@@ -26,12 +26,6 @@ public class Customer {
         this.uang = uang;
         this.token = token;
     }
-    public Customer(int id, String password, int uang, int token) {
-        this.id = id;
-        this.password = password;
-        this.uang = uang;
-        this.token = token;
-    }
     public int getid() {
         return id;
     }

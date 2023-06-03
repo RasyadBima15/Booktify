@@ -7,17 +7,19 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+
+import booktify.abstract_class.DaoForCustomers;
 import booktify.models.Customer;
 import booktify.utils.DatabaseConfig;
 
-public class CustomerDao {
+public class CustomerDao implements DaoForCustomers{
     private Connection conn;
     private Statement stmt;
     public CustomerDao(){
         conn = DatabaseConfig.getConnection();
         setupTable();
     }
-    private void setupTable(){
+    public void setupTable(){
         try {
             DatabaseMetaData meta = conn.getMetaData();
             ResultSet rs = meta.getTables(null, null, "customers", null);

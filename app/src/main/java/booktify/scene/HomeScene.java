@@ -541,6 +541,7 @@ public class HomeScene extends Home implements ShowScene {
         });
         bottomSide.setPadding(new Insets(7));
         bottomSide.getChildren().addAll(tableBooks, btnBuy);
+        bottomSide.getStyleClass().add("login");
         bottomSide.setSpacing(10);
         bottomSide.setAlignment(Pos.CENTER);
     }
@@ -597,6 +598,7 @@ public class HomeScene extends Home implements ShowScene {
         tableCombined.setItems(combinedDataList);
         
         bottomSide.setPadding(new Insets(7));
+        bottomSide.getStyleClass().add("login");
         bottomSide.getChildren().addAll(tableCombined);
     }
 
@@ -641,6 +643,7 @@ public class HomeScene extends Home implements ShowScene {
             vLayoutAll.setSpacing(10);
             vLayoutAll.setPrefHeight(480 - 65);
             vLayoutAll.setAlignment(Pos.CENTER);
+            bottomSide.getStyleClass().add("login");
             bottomSide.getChildren().add(vLayoutAll);
 
             btnBatal.setOnAction(l -> {
@@ -692,6 +695,7 @@ public class HomeScene extends Home implements ShowScene {
                                 vLayoutAllWithCorrectToken.setPrefHeight(480 - 65);
                                 vLayoutAllWithCorrectToken.setSpacing(10);
                                 vLayoutAllWithCorrectToken.setAlignment(Pos.CENTER);
+                                bottomSide.getStyleClass().add("login");
                                 bottomSide.getChildren().add(vLayoutAllWithCorrectToken);
                             } else {
                                 bottomSide.getChildren().clear();
@@ -701,6 +705,7 @@ public class HomeScene extends Home implements ShowScene {
                                 vLayoutAllWithWrongToken.setPrefHeight(480 - 65);
                                 vLayoutAllWithWrongToken.setSpacing(10);
                                 vLayoutAllWithWrongToken.setAlignment(Pos.CENTER);
+                                bottomSide.getStyleClass().add("login");
                                 bottomSide.getChildren().add(vLayoutAllWithWrongToken);
                             }
 
@@ -728,6 +733,7 @@ public class HomeScene extends Home implements ShowScene {
                     vLayoutAllWithWrongToken.setSpacing(10);
                     vLayoutAllWithWrongToken.setPrefHeight(480 - 65);
                     vLayoutAllWithWrongToken.setAlignment(Pos.CENTER);
+                    bottomSide.getStyleClass().add("login");
                     bottomSide.getChildren().add(vLayoutAllWithWrongToken);
                 }
             });
@@ -737,6 +743,7 @@ public class HomeScene extends Home implements ShowScene {
         vLayout.setSpacing(10);
         vLayout.setPrefHeight(480 - 65);
         vLayout.setAlignment(Pos.CENTER);
+        bottomSide.getStyleClass().add("login");
         bottomSide.setPadding(new Insets(0));
         bottomSide.getChildren().add(vLayout);
 
